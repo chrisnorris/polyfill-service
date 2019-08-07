@@ -17,6 +17,7 @@ async function getBrowserPolyfill(req, res) {
   // if (shouldCacheAggressively) {
   //   res.setHeader('Cache-Control', 'immutable')
   // }
+  res.header("Access-Control-Allow-Origin", "*")
   res.write(script)
   res.end()
 }
