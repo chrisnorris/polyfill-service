@@ -11,8 +11,9 @@ async function getBrowserPolyfill(req, res) {
     }
   })
   res.set({
-    'Content-Type': 'application/javascript;charset=utf-8',
-    'Content-Length': script.length,
+    'Content-Type': 'application/javascript;charset=utf-8'
+    // setting this caused truncation on ie payload
+    //,'Content-Length': script.length,
   })
   // if (shouldCacheAggressively) {
   //   res.setHeader('Cache-Control', 'immutable')
@@ -21,11 +22,5 @@ async function getBrowserPolyfill(req, res) {
   res.write(script)
   res.end()
 }
-// /* GET home page. */
-// app.get('/', function(req, res, next) {
-//   res.render('index', { title: 'ok i got it' });
-// });
-
 app.get('/polyfill.js', getBrowserPolyfill);
-
 module.exports = app;
