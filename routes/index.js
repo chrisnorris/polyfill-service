@@ -18,10 +18,9 @@ async function getBrowserPolyfill(req, res) {
   // if (shouldCacheAggressively) {
   //   res.setHeader('Cache-Control', 'immutable')
   // }
-  var allowed = ["localhost:62226", "poultex.com", "poultex-staging.azurewebsites.net"]
-  var origin = req.headers['origin'] || 'localhost'
+  var origin = req.headers['Origin']
 
-  if(allowed.indexOf(origin) != -1){
+  if(origin.search('poultex') != -1 || origin.search('localhost') != -1){
     res.header('Access-Control-Allow-Origin', origin)
     res.header('Vary','Origin')
   }
