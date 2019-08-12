@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <span>CORS - testbed</span>
+  </body>
+</html>
+<script>
+(function()
+{
+  console.log('firing CORS')
+  var createCORSRequest = function(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // Most browsers.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // IE8 & IE9
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
+};
+
+var url = 'https://970fa95d23407752454a8a68f0f553eb.azurewebsites.net/polyfill.js';
+var method = 'GET';
+var xhr = createCORSRequest(method, url);
+
+xhr.onload = function() {
+  // Success code goes here.
+  console.log('worked')
+};
+xhr.onerror = function() {
+    console.log('error')
+  //Error code goes here.
+};
+
+// xhr.setRequestHeader('origin', 'localhost');
+xhr.send();
+})();
+</script>    
