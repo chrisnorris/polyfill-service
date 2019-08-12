@@ -19,11 +19,9 @@ async function getBrowserPolyfill(req, res) {
   //   res.setHeader('Cache-Control', 'immutable')
   // }
 
-  var origin = req.headers['origin'] || 'override'
+  var origin = req.headers['origin'] || 'poultex'
   
-  console.log('>>>>' + origin + '<<<<')
-
-  if(origin.search('override') != -1 || origin.search('localhost') != -1){
+  if(origin.search('poultex') != -1 || origin.search('localhost') != -1){
     res.header('Access-Control-Allow-Origin', origin)
     res.header('Vary','Origin')
   }
