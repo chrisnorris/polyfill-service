@@ -8,6 +8,7 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <span>CORS - testbed</span>
+    <text id="log">Logger</text>
   </body>
 </html>
 <script>
@@ -34,15 +35,17 @@ var url = 'https://970fa95d23407752454a8a68f0f553eb.azurewebsites.net/polyfill.j
 var method = 'GET';
 var xhr = createCORSRequest(method, url);
 
-xhr.onload = function() {
+xhr.onload = function(payload) {
   // Success code goes here.
-  console.log('worked')
+  var e = document.getElementById("log");
+  e.innerText=xhr.responseText;
 };
 xhr.onerror = function() {
     console.log('error')
   //Error code goes here.
 };
-
+var e = document.getElementById("log");
+e.innerText='sending CORS request...';
 // xhr.setRequestHeader('origin', 'localhost');
 xhr.send();
 })();
