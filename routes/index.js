@@ -4,7 +4,7 @@ var app = express.Router();
 
 async function getBrowserPolyfill(req, res) {
   var e = req.query.securityId;
-  if(e && e == process.env.securityId){
+  if(e && e == process.env.SEC_ID){
   const script = await polyfill.getPolyfillString({
     uaString: req.headers['user-agent'],
     minify: false,
