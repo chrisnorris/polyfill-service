@@ -13,7 +13,8 @@ async function getBrowserPolyfill(req, res) {
     }
   })
   res.set({
-    'Content-Type': 'application/javascript;charset=utf-8'
+    'Content-Type': 'application/javascript;charset=utf-8',
+    'Cache-Control': 'public, max-age=31536000'
     // setting this caused truncation on ie payload
     //,'Content-Length': script.length,
   })
